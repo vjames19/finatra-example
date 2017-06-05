@@ -17,6 +17,11 @@ lazy val root = (project in file("."))
 lazy val domain = (project in file("domain"))
   .settings(commonSettings)
 
-lazy val finatraApi = (project in file("finatra-api"))
+lazy val domainImplementation = (project in file("domain-implementation"))
   .settings(commonSettings)
   .dependsOn(domain)
+
+
+lazy val finatraApi = (project in file("finatra-api"))
+  .settings(commonSettings)
+  .dependsOn(domainImplementation)
