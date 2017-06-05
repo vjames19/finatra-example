@@ -12,7 +12,7 @@ lazy val commonSettings = Seq(
 
 lazy val root = (project in file("."))
   .settings(commonSettings)
-  .aggregate(domain, finatraApi)
+  .aggregate(domain, domainImplementation, finatraApi)
 
 lazy val domain = (project in file("domain"))
   .settings(commonSettings)
