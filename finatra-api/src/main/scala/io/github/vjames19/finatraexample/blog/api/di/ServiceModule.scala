@@ -4,11 +4,11 @@ import java.util.concurrent.Executors
 import javax.inject.Singleton
 
 import com.google.inject.Provides
-import com.twitter.inject.TwitterModule
+import com.twitter.inject.{Injector, TwitterModule}
 import io.github.vjames19.finatraexample.blog.service._
 import io.github.vjames19.finatraexample.blog.service.di.DbExecutionContext
-
 import slick.jdbc.PostgresProfile.api._
+
 import scala.concurrent.ExecutionContext
 
 /**
@@ -21,6 +21,13 @@ object ServiceModule extends TwitterModule {
     bind[CommentService].to[DbCommentService]
     bind[PostService].to[DbPostService]
     bind[UserService].to[DbUserService]
+  }
+
+
+  override def singletonShutdown(injector: Injector): Unit = {
+    super.singletonShutdown(injector)
+
+    injector.instance[Database].close()
   }
 
   @Provides

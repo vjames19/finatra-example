@@ -11,7 +11,7 @@ import io.github.vjames19.finatraexample.blog.api.exceptions.PSQLExceptionMapper
 /**
   * Created by victor.reventos on 6/5/17.
   */
-object Server extends HttpServer {
+class Server extends HttpServer {
 
   override protected def modules: Seq[Module] = Seq(ServiceModule)
 
@@ -28,3 +28,5 @@ object Server extends HttpServer {
       .exceptionMapper[PSQLExceptionMapper]
   }
 }
+
+object ServerMain extends Server
