@@ -1,6 +1,6 @@
 package io.github.vjames19.finatraexample.blog.service
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 
 import io.github.vjames19.finatraexample.blog.domain.User
 import io.github.vjames19.finatraexample.blog.models.Tables
@@ -13,6 +13,7 @@ import scala.concurrent.{ExecutionContext, Future}
 /**
   * Created by victor.reventos on 6/5/17.
   */
+@Singleton
 class DbUserService @Inject()(db: Database,
                               @DbExecutionContext implicit val executionContext: ExecutionContext) extends UserService {
 

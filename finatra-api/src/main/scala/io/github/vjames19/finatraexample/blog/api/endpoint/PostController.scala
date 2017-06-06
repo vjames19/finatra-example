@@ -17,8 +17,8 @@ class PostController @Inject()(postService: PostService,
     postService.create(request.toDomain())
   }
 
-  get("/posts/:id") { request: GetPostRequest =>
-    postService.get(request.id)
+  get("/posts/:postId") { request: GetPostRequest =>
+    postService.get(request.postId)
   }
 
   post("/posts/:postId/comments") { request: CreateCommentRequest =>
@@ -26,10 +26,10 @@ class PostController @Inject()(postService: PostService,
   }
 
   get("/posts/:postId/comments") { request: GetPostCommentsRequest =>
-    commentService.getCommentsForPost(request.id)
+    commentService.getCommentsForPost(request.postId)
   }
 
-  put("/posts/:postId/comments/:commentId") { request: CreateCommentRequest =>
+  put("/posts/:postId/comments/:commentId") { request: UpdateCommentRequest =>
     commentService.update(request.toDomain())
   }
 
@@ -38,7 +38,7 @@ class PostController @Inject()(postService: PostService,
   }
 }
 
-case class GetPostRequest(@RouteParam id: Long)
+case class GetPostRequest(@RouteParam postId: Long)
 
 case class CreatePostRequest(userId: Long, @NotEmpty content: String) {
   def toDomain(): Post = {
@@ -46,7 +46,7 @@ case class CreatePostRequest(userId: Long, @NotEmpty content: String) {
   }
 }
 
-case class GetPostCommentsRequest(@RouteParam id: Long)
+case class GetPostCommentsRequest(@RouteParam postId: Long)
 
 case class DeleteCommentRequest(@RouteParam postId: Long, @RouteParam commentId: Long)
 
@@ -56,5 +56,12 @@ case class CreateCommentRequest(@RouteParam postId: Long, userId: Long, text: St
     Comment(id = 0L, postId = postId, userId = userId, text = text)
   }
 }
+
+case class UpdateCommentRequest(@RouteParam commentId: Long, @RouteParam postId: Long, userId: Long, text: String) {
+  def toDomain(): Comment = {
+    Comment(id = commentId, postId = postId, userId = userId, text = text)
+  }
+}
+
 
 

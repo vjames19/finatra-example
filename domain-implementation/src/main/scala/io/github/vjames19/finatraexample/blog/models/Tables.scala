@@ -20,8 +20,8 @@ trait Tables {
 
   /** Entity class storing rows of table Comments
    *  @param id Database column id SqlType(bigserial), AutoInc, PrimaryKey
-   *  @param userId Database column user_id SqlType(bigserial), AutoInc
-   *  @param postId Database column post_id SqlType(bigserial), AutoInc
+   *  @param userId Database column user_id SqlType(int8)
+   *  @param postId Database column post_id SqlType(int8)
    *  @param content Database column content SqlType(varchar), Length(1000,true) */
   final case class CommentsRow(id: Long, userId: Long, postId: Long, content: String)
   /** GetResult implicit for fetching CommentsRow objects using plain SQL queries */
@@ -37,10 +37,10 @@ trait Tables {
 
     /** Database column id SqlType(bigserial), AutoInc, PrimaryKey */
     val id: Rep[Long] = column[Long]("id", O.AutoInc, O.PrimaryKey)
-    /** Database column user_id SqlType(bigserial), AutoInc */
-    val userId: Rep[Long] = column[Long]("user_id", O.AutoInc)
-    /** Database column post_id SqlType(bigserial), AutoInc */
-    val postId: Rep[Long] = column[Long]("post_id", O.AutoInc)
+    /** Database column user_id SqlType(int8) */
+    val userId: Rep[Long] = column[Long]("user_id")
+    /** Database column post_id SqlType(int8) */
+    val postId: Rep[Long] = column[Long]("post_id")
     /** Database column content SqlType(varchar), Length(1000,true) */
     val content: Rep[String] = column[String]("content", O.Length(1000,varying=true))
 
@@ -54,7 +54,7 @@ trait Tables {
 
   /** Entity class storing rows of table Posts
    *  @param id Database column id SqlType(bigserial), AutoInc, PrimaryKey
-   *  @param userId Database column user_id SqlType(bigserial), AutoInc
+   *  @param userId Database column user_id SqlType(int8)
    *  @param content Database column content SqlType(text) */
   final case class PostsRow(id: Long, userId: Long, content: String)
   /** GetResult implicit for fetching PostsRow objects using plain SQL queries */
@@ -70,8 +70,8 @@ trait Tables {
 
     /** Database column id SqlType(bigserial), AutoInc, PrimaryKey */
     val id: Rep[Long] = column[Long]("id", O.AutoInc, O.PrimaryKey)
-    /** Database column user_id SqlType(bigserial), AutoInc */
-    val userId: Rep[Long] = column[Long]("user_id", O.AutoInc)
+    /** Database column user_id SqlType(int8) */
+    val userId: Rep[Long] = column[Long]("user_id")
     /** Database column content SqlType(text) */
     val content: Rep[String] = column[String]("content")
 
