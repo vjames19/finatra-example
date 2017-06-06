@@ -9,6 +9,6 @@ import io.github.vjames19.finatraexample.blog.models.Tables.PostsRow
 object PostMapper {
 
   def toDomain(post: PostsRow): Post = {
-    Post(id = post.id, userId =  post.id, content = post.content)
+    Post(id = post.id, userId = post.id, content = post.content)
   }
 }

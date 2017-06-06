@@ -1,4 +1,5 @@
 package io.github.vjames19.finatraexample.blog.service
+
 import javax.inject.Inject
 
 import io.github.vjames19.finatraexample.blog.domain.Comment
@@ -25,7 +26,7 @@ class DbCommentService @Inject()(db: Database,
   override def create(comment: Comment): Future[Comment] = {
     db.run {
       (Tables.Comments returning Tables.Comments.map(_.id)) +=
-        CommentsRow(id = 0L, userId = comment.userId, postId = comment.postId, content =  comment.text)
+        CommentsRow(id = 0L, userId = comment.userId, postId = comment.postId, content = comment.text)
     }.map(id => comment.copy(id = id))
   }
 

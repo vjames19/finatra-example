@@ -10,9 +10,9 @@ import io.github.vjames19.finatraexample.blog.api.endpoint.{PostController, User
   */
 class Server extends HttpServer {
   override protected def configureHttp(router: HttpRouter): Unit = {
-      router
-        .filter[CommonFilters]
-        .add[PostController]
-        .add[UserController]
+    router
+      .filter[CommonFilters]
+      .add[PostController]
+      .add[UserController]
   }
 }
