@@ -25,3 +25,5 @@ lazy val domainImplementation = (project in file("domain-implementation"))
 lazy val finatraApi = (project in file("finatra-api"))
   .settings(noMigrate)
   .dependsOn(domainImplementation)
+
+run := (run in Compile in finatraApi).evaluated
