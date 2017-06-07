@@ -12,7 +12,7 @@ libraryDependencies ++= Seq(
 //sourceGenerators in Compile <+= slickCodeGenTask
 
 // code generation task
-lazy val slick = taskKey[Seq[File]]("Generate code from the DB tables")
+lazy val slick: TaskKey[Seq[File]] = taskKey[Seq[File]]("Generate code from the DB tables")
 
 slick := {
   val outputDir = (baseDirectory.value / "src/main/scala").getPath // place generated files in sbt's managed sources folder
@@ -21,7 +21,7 @@ slick := {
   //  val initScript = sqlFiles.map(n => s"runscript from '$currentDir/src/main/sql/$n'").mkString("\\;")
   //  val url = s"jdbc:h2:mem:test\\;INIT=$initScript" // connection info for a pre-populated throw-away, in-memory db for this demo, which is freshly initialized on every run
 
-  val url = "jdbc:postgresql://localhost/blog?user=postgres&password=admin"
+  val url = "jdbc:postgresql://localhost/blog?user=postgres&password=postgres"
   val jdbcDriver = "org.postgresql.Driver"
   val slickDriver = "slick.jdbc.PostgresProfile"
   val pkg = "io.github.vjames19.finatraexample.blog.models"
@@ -35,7 +35,7 @@ slick := {
 flywayUrl := "jdbc:postgresql://localhost/blog"
 flywayUser := "postgres"
 // This should be added through an environment variable, doing it like this for simplicity.
-flywayPassword := "admin"
+flywayPassword := "postgres"
 
 flywayBaselineOnMigrate := true
 flywayLocations := Seq("classpath:db/migration")

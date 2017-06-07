@@ -36,7 +36,9 @@ This modules provides the REST api using finatra.
 
 # How to run
 
-First you need postgres installed and running on default port. Tt should have user "postgres" with password "admin" and a database called "blog"
+First you need postgres installed and running on the default port.
+
+It should have a user "postgres" with password "postgres" and a database called "blog"
 
 ## Flyway migration
 Run the migration and it should create the schema and populate the tables.
