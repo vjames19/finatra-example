@@ -1,21 +1,21 @@
 name := "finatra-example"
 
-version := "1.0"
-
-scalaVersion := "2.12.2"
-
 lazy val commonSettings = Seq(
   organization := "io.github.vjames19",
   version := "1.0",
   scalaVersion := "2.12.2"
 )
 
+lazy val noMigrate = Seq(
+  flywayMigrate := {}
+) ++ commonSettings
+
 lazy val root = (project in file("."))
-  .settings(commonSettings)
+  .settings(noMigrate)
   .aggregate(domain, domainImplementation, finatraApi)
 
 lazy val domain = (project in file("domain"))
-  .settings(commonSettings)
+  .settings(noMigrate)
 
 lazy val domainImplementation = (project in file("domain-implementation"))
   .settings(commonSettings)
@@ -23,5 +23,5 @@ lazy val domainImplementation = (project in file("domain-implementation"))
 
 
 lazy val finatraApi = (project in file("finatra-api"))
-  .settings(commonSettings)
+  .settings(noMigrate)
   .dependsOn(domainImplementation)

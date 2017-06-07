@@ -28,5 +28,14 @@ slick := {
   toError((runner in Compile).value.run("slick.codegen.SourceCodeGenerator", (dependencyClasspath in Compile).value.files, Array(slickDriver, jdbcDriver, url, outputDir, pkg), streams.value.log))
   val fname = s"$outputDir/io/github/vjames19/finatraexample/blog/models/Tables.scala"
   Seq(file(fname))
-
 }
+
+
+// flyway
+flywayUrl := "jdbc:postgresql://localhost/blog"
+flywayUser := "postgres"
+// This should be added through an environment variable, doing it like this for simplicity.
+flywayPassword := "admin"
+
+flywayBaselineOnMigrate := true
+flywayLocations := Seq("classpath:db/migration")
