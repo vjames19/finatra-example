@@ -9,7 +9,7 @@
     </appender>
 
     <appender name="asyncConsole" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="console" />
+        <appender-ref ref="console"/>
     </appender>
 
     <root level="info">

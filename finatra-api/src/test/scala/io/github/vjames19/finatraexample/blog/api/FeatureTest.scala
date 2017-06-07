@@ -13,11 +13,11 @@ import org.scalatest.{Matchers, WordSpec}
 trait FeatureTest extends WordSpec with FeatureTestMixin with Matchers with ScalaFutures {
 
   // Patience for waiting for futures
-  implicit val defaultPatience = PatienceConfig(timeout =  Span(2, Seconds), interval = Span(5, Millis))
+  implicit val defaultPatience = PatienceConfig(timeout = Span(2, Seconds), interval = Span(5, Millis))
 
   lazy val objectMapper: FinatraObjectMapper = injector.instance[FinatraObjectMapper]
 
-  def inject[T : Manifest]: T = injector.instance[T]
+  def inject[T: Manifest]: T = injector.instance[T]
 
   implicit class RichResponse(s: Response) {
     def as[T: Manifest]: T = {
