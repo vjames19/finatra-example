@@ -32,3 +32,24 @@ to create the DAO and DTO from the Schema.
 
 ## finatra-api
 This modules provides the REST api using finatra.
+
+
+# How to run
+
+First you need postgres installed and running on default port. Tt should have user "postgres" with password "admin" and a database called "blog"
+
+## Flyway migration
+Run the migration and it should create the schema and populate the tables.
+```
+sbt flywayMigrate
+```
+
+## Running the server
+```
+sbt run
+```
+
+## Testing
+```
+sbt test
+```
